@@ -1,0 +1,199 @@
+/* Substitua o CSS existente por este: */
+
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.clock-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Estilos do Relógio Digital */
+.digital-clock {
+    margin-bottom: 40px;
+}
+
+.time {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+.date {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    opacity: 0.8;
+    letter-spacing: 2px;
+}
+
+/* Relógio Analógico */
+.analog-clock {
+    position: relative;
+    width: 80vw;
+    height: 80vw;
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 10px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ponteiros - Correção crucial */
+.hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center; /* Alterado para left center */
+    border-radius: 10px;
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    backface-visibility: hidden;
+}
+
+.hour-hand {
+    width: 25%; /* Reduzido para melhor precisão */
+    height: 8px;
+    background: linear-gradient(to right, #fff, #ccc);
+    z-index: 3;
+}
+
+.min-hand {
+    width: 35%;
+    height: 6px;
+    background: linear-gradient(to right, #0ff, #0cc);
+    z-index: 2;
+}
+
+.second-hand {
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(to right, #f00, #c00);
+    z-index: 1;
+}
+
+.center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 4;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Marcadores - Novo sistema de posicionamento */
+.marker {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 30px;
+}
+
+/* Posicionamento matemático preciso */
+.marker-12 { top: 5%; left: 50%; transform: translateX(-50%); }
+.marker-1 { top: 10%; right: 20%; }
+.marker-2 { top: 25%; right: 5%; }
+.marker-3 { top: 50%; right: 0%; transform: translateY(-50%); }
+.marker-4 { bottom: 25%; right: 5%; }
+.marker-5 { bottom: 10%; right: 20%; }
+.marker-6 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.marker-7 { bottom: 10%; left: 20%; }
+.marker-8 { bottom: 25%; left: 5%; }
+.marker-9 { top: 50%; left: 0%; transform: translateY(-50%); }
+.marker-10 { top: 25%; left: 5%; }
+.marker-11 { top: 10%; left: 20%; }
+
+/* Efeito de hover nos relógios */
+.digital-clock:hover, .analog-clock:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 400px) {
+    .clock-container {
+        padding: 15px;
+    }
+    
+    .time {
+        letter-spacing: 1px;
+    }
+    
+    .analog-clock {
+        border-width: 5px;
+    }
+    
+    .hour-hand {
+        height: 6px;
+    }
+    
+    .min-hand {
+        height: 4px;
+    }
+    
+    .second-hand {
+        height: 2px;
+    }
+}
+
+.hand {
+    /* Mantém as propriedades existentes e adiciona: */
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    backface-visibility: hidden; /* Melhora a renderização */
+}
+
+.hour-hand {
+    /* Adiciona gradiente para melhor visibilidade */
+    background: linear-gradient(to right, #fff, #ccc);
+}
+
+.min-hand {
+    background: linear-gradient(to right, #0ff, #0cc);
+}
+
+.second-hand {
+    background: linear-gradient(to right, #f00, #c00);
+}
